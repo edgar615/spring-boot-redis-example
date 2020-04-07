@@ -1,0 +1,45 @@
+cache:
+  config:
+    defaultConfigs:
+    -  cacheName: ONE_HOUR_CACHE
+       timeToLiveSeconds: 3600
+    -  cacheName: TEN_MINUTES_CACHE
+       timeToLiveSeconds: 600
+  app-caches:
+    app-cache-map:
+      serviceOne_cache: ONE_HOUR_CACHE
+      serviceTwo_cache: TEN_MINUTES_CACHE
+
+spring:
+  cache:
+    type: redis
+  redis:
+      database: 0
+      #host: 47.100.xx.xx
+      #password: xxx
+      port: 6379
+      ssl : false
+      timeout: 3000
+      sentinel:
+        master: mymaster
+        nodes:
+        - "47.100.xx.xx:26379"
+        - "47.100.xx.xx:26380"
+        - "47.100.xx.xx:26381"
+      lettuce:
+        shutdown-timeout: 200ms
+#spring.cache.redis.cache-null-values=true # Allow caching null values.
+#spring.cache.redis.key-prefix= # Key prefix.
+#spring.cache.redis.time-to-live=0ms # Entry expiration. By default the entries never expire.
+#spring.cache.redis.use-key-prefix=true # Whether to use the key prefix when writing to Redis.
+
+
+#spring.redis.cluster.max-redirects= # Maximum number of redirects to follow when executing commands across the cluster.
+#spring.redis.cluster.nodes= # Comma-separated list of "host:port" pairs to bootstrap from.
+#spring.redis.lettuce.pool.max-active=8 # Maximum number of connections that can be allocated by the pool at a given time. Use a negative value for no limit.
+#spring.redis.lettuce.pool.max-idle=8 # Maximum number of "idle" connections in the pool. Use a negative value to indicate an unlimited number of idle connections.
+#spring.redis.lettuce.pool.max-wait=-1ms # Maximum amount of time a connection allocation should block before throwing an exception when the pool is exhausted. Use a negative value to block indefinitely.
+#spring.redis.lettuce.pool.min-idle=0 # Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if it is positive.
+#spring.redis.lettuce.shutdown-timeout=100ms # Shutdown timeout.
+#spring.redis.sentinel.master= # Name of the Redis server.
+#spring.redis.sentinel.nodes= # Comma-separated list of "host:port" pairs.
